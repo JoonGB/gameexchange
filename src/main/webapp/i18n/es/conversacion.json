@@ -1,0 +1,23 @@
+{
+    "gameexchangeApp": {
+        "conversacion" : {
+            "home": {
+                "title": "Conversacions",
+                "createLabel": "Crear nuevo Conversacion",
+                "createOrEditLabel": "Crear o editar Conversacion",
+                "search": "Search for Conversacion"
+            },
+            "created": "Un nuevo Conversacion ha sido creado con el identificador {{ param }}",
+            "updated": "Un Conversacion ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un Conversacion ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar Conversacion {{ id }}?"
+            },
+            "detail": {
+                "title": "Conversacion"
+            },
+            "creado": "Creado",
+            "mensaje": "Mensaje"
+        }
+    }
+}

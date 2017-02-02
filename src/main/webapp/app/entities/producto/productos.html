@@ -1,0 +1,70 @@
+<div>
+    <h2 data-translate="gameexchangeApp.producto.home.title">Productos</h2>
+    <jhi-alert></jhi-alert>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-4 no-padding-left">
+                <button class="btn btn-primary" ui-sref="producto.new" >
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span  data-translate="gameexchangeApp.producto.home.createLabel">
+                        Create new Producto
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive">
+        <table class="jh-table table table-striped">
+            <thead>
+                <tr>
+                    <th><span data-translate="global.field.id">ID</span></th>
+                    <th><span data-translate="gameexchangeApp.producto.descripcion">Descripcion</span></th>
+                    <th><span data-translate="gameexchangeApp.producto.creado">Creado</span></th>
+                    <th><span data-translate="gameexchangeApp.producto.precio">Precio</span></th>
+                    <th><span data-translate="gameexchangeApp.producto.nombre">Nombre</span></th>
+                    <th><span data-translate="gameexchangeApp.producto.videojuego">Videojuego</span></th>
+                    <th><span data-translate="gameexchangeApp.producto.usuario">Usuario</span></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="producto in vm.productos track by producto.id">
+                    <td><a ui-sref="producto-detail({id:producto.id})">{{producto.id}}</a></td>
+                    <td>{{producto.descripcion}}</td>
+                    <td>{{producto.creado | date:'medium'}}</td>
+                    <td>{{producto.precio}}</td>
+                    <td>{{producto.nombre}}</td>
+                    <td>
+                        <a ui-sref="videojuego-detail({id:producto.videojuego.id})">{{producto.videojuego.nombre}}</a>
+                    </td>
+                    <td>
+                        {{producto.usuario.login}}
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group flex-btn-group-container">
+                            <button type="submit"
+                                    ui-sref="producto-detail({id:producto.id})"
+                                    class="btn btn-info btn-sm">
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                                <span class="hidden-xs hidden-sm" data-translate="entity.action.view"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="producto.edit({id:producto.id})"
+                                    class="btn btn-primary btn-sm">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="hidden-xs hidden-sm" data-translate="entity.action.edit"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="producto.delete({id:producto.id})"
+                                    class="btn btn-danger btn-sm">
+                                <span class="glyphicon glyphicon-remove-circle"></span>
+                                <span class="hidden-xs hidden-sm" data-translate="entity.action.delete"></span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,22 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "mensaje",
+            "otherEntityName": "mensaje",
+            "otherEntityRelationshipName": "conversacion"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "creado",
+            "fieldType": "ZonedDateTime"
+        }
+    ],
+    "changelogDate": "20170202194035",
+    "entityTableName": "conversacion",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no"
+}

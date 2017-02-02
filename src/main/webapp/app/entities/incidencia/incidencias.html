@@ -1,0 +1,68 @@
+<div>
+    <h2 data-translate="gameexchangeApp.incidencia.home.title">Incidencias</h2>
+    <jhi-alert></jhi-alert>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-4 no-padding-left">
+                <button class="btn btn-primary" ui-sref="incidencia.new" >
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span  data-translate="gameexchangeApp.incidencia.home.createLabel">
+                        Create new Incidencia
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive">
+        <table class="jh-table table table-striped">
+            <thead>
+                <tr>
+                    <th><span data-translate="global.field.id">ID</span></th>
+                    <th><span data-translate="gameexchangeApp.incidencia.creado">Creado</span></th>
+                    <th><span data-translate="gameexchangeApp.incidencia.descripcion">Descripcion</span></th>
+                    <th><span data-translate="gameexchangeApp.incidencia.titulo">Titulo</span></th>
+                    <th><span data-translate="gameexchangeApp.incidencia.usuario">Usuario</span></th>
+                    <th><span data-translate="gameexchangeApp.incidencia.venta">Venta</span></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="incidencia in vm.incidencias track by incidencia.id">
+                    <td><a ui-sref="incidencia-detail({id:incidencia.id})">{{incidencia.id}}</a></td>
+                    <td>{{incidencia.creado | date:'medium'}}</td>
+                    <td>{{incidencia.descripcion}}</td>
+                    <td>{{incidencia.titulo}}</td>
+                    <td>
+                        {{incidencia.usuario.login}}
+                    </td>
+                    <td>
+                        <a ui-sref="venta-detail({id:incidencia.venta.id})">{{incidencia.venta.id}}</a>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group flex-btn-group-container">
+                            <button type="submit"
+                                    ui-sref="incidencia-detail({id:incidencia.id})"
+                                    class="btn btn-info btn-sm">
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                                <span class="hidden-xs hidden-sm" data-translate="entity.action.view"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="incidencia.edit({id:incidencia.id})"
+                                    class="btn btn-primary btn-sm">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="hidden-xs hidden-sm" data-translate="entity.action.edit"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="incidencia.delete({id:incidencia.id})"
+                                    class="btn btn-danger btn-sm">
+                                <span class="glyphicon glyphicon-remove-circle"></span>
+                                <span class="hidden-xs hidden-sm" data-translate="entity.action.delete"></span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,51 @@
+
+<div>
+    <h2><span data-translate="gameexchangeApp.venta.detail.title">Venta</span> {{vm.venta.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span data-translate="gameexchangeApp.venta.creado">Creado</span></dt>
+        <dd>
+            <span>{{vm.venta.creado | date:'medium'}}</span>
+        </dd>
+        <dt><span data-translate="gameexchangeApp.venta.valoracionCliente">Valoracion Cliente</span></dt>
+        <dd>
+            <span>{{vm.venta.valoracionCliente}}</span>
+        </dd>
+        <dt><span data-translate="gameexchangeApp.venta.valoreacionVendedor">Valoreacion Vendedor</span></dt>
+        <dd>
+            <span>{{vm.venta.valoreacionVendedor}}</span>
+        </dd>
+        <dt><span data-translate="gameexchangeApp.venta.comentarioCliente">Comentario Cliente</span></dt>
+        <dd>
+            <span>{{vm.venta.comentarioCliente}}</span>
+        </dd>
+        <dt><span data-translate="gameexchangeApp.venta.comentarioVendedor">Comentario Vendedor</span></dt>
+        <dd>
+            <span>{{vm.venta.comentarioVendedor}}</span>
+        </dd>
+        <dt><span data-translate="gameexchangeApp.venta.vendedor">Vendedor</span></dt>
+        <dd>
+            {{vm.venta.vendedor.login}}
+        </dd>
+        <dt><span data-translate="gameexchangeApp.venta.cliente">Cliente</span></dt>
+        <dd>
+            {{vm.venta.cliente.login}}
+        </dd>
+        <dt><span data-translate="gameexchangeApp.venta.producto">Producto</span></dt>
+        <dd>
+            <a ui-sref="producto-detail({id:vm.venta.producto.id})">{{vm.venta.producto.nombre}}</a>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="venta-detail.edit({id:vm.venta.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-xs hidden-sm" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

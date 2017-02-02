@@ -1,0 +1,52 @@
+
+<div>
+    <h2><span data-translate="gameexchangeApp.userExt.detail.title">User Ext</span> {{vm.userExt.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span data-translate="gameexchangeApp.userExt.genero">Genero</span></dt>
+        <dd>
+            <span data-translate="{{'gameexchangeApp.Genero.' + vm.userExt.genero}}">{{vm.userExt.genero}}</span>
+        </dd>
+        <dt><span data-translate="gameexchangeApp.userExt.ciudad">Ciudad</span></dt>
+        <dd>
+            <span>{{vm.userExt.ciudad}}</span>
+        </dd>
+        <dt><span data-translate="gameexchangeApp.userExt.fechaNacimiento">Fecha Nacimiento</span></dt>
+        <dd>
+            <span>{{vm.userExt.fechaNacimiento | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span data-translate="gameexchangeApp.userExt.cp">Cp</span></dt>
+        <dd>
+            <span>{{vm.userExt.cp}}</span>
+        </dd>
+        <dt><span data-translate="gameexchangeApp.userExt.foto">Foto</span></dt>
+        <dd>
+            <div ng-if="vm.userExt.foto">
+                <a ng-click="vm.openFile(vm.userExt.fotoContentType, vm.userExt.foto)">
+                    <img data-ng-src="{{'data:' + vm.userExt.fotoContentType + ';base64,' + vm.userExt.foto}}" style="max-width: 100%;" alt="userExt image"/>
+                </a>
+                {{vm.userExt.fotoContentType}}, {{vm.byteSize(vm.userExt.foto)}}
+            </div>
+        </dd>
+        <dt><span data-translate="gameexchangeApp.userExt.telefono">Telefono</span></dt>
+        <dd>
+            <span>{{vm.userExt.telefono}}</span>
+        </dd>
+        <dt><span data-translate="gameexchangeApp.userExt.user">User</span></dt>
+        <dd>
+            {{vm.userExt.user.login}}
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="user-ext-detail.edit({id:vm.userExt.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-xs hidden-sm" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

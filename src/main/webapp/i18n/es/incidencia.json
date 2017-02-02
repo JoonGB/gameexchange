@@ -1,0 +1,26 @@
+{
+    "gameexchangeApp": {
+        "incidencia" : {
+            "home": {
+                "title": "Incidencias",
+                "createLabel": "Crear nuevo Incidencia",
+                "createOrEditLabel": "Crear o editar Incidencia",
+                "search": "Search for Incidencia"
+            },
+            "created": "Un nuevo Incidencia ha sido creado con el identificador {{ param }}",
+            "updated": "Un Incidencia ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un Incidencia ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar Incidencia {{ id }}?"
+            },
+            "detail": {
+                "title": "Incidencia"
+            },
+            "creado": "Creado",
+            "descripcion": "Descripcion",
+            "titulo": "Titulo",
+            "usuario": "Usuario",
+            "venta": "Venta"
+        }
+    }
+}

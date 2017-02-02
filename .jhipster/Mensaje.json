@@ -1,0 +1,38 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "conversacion",
+            "otherEntityName": "conversacion",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "emisor",
+            "otherEntityName": "user",
+            "otherEntityField": "login"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "receptor",
+            "otherEntityName": "user",
+            "otherEntityField": "login"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "creado",
+            "fieldType": "ZonedDateTime"
+        },
+        {
+            "fieldName": "texto",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20170202194034",
+    "entityTableName": "mensaje",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no"
+}

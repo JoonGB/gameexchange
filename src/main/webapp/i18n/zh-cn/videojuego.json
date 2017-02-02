@@ -1,0 +1,24 @@
+{
+    "gameexchangeApp": {
+        "videojuego" : {
+            "home": {
+                "title": "Videojuegos",
+                "createLabel": "Create a new Videojuego",
+                "createOrEditLabel": "Create or edit a Videojuego",
+                "search": "Search for Videojuego"
+            },
+            "created": "A new Videojuego is created with identifier {{ param }}",
+            "updated": "A Videojuego is updated with identifier {{ param }}",
+            "deleted": "A Videojuego is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Videojuego {{ id }}?"
+            },
+            "detail": {
+                "title": "Videojuego"
+            },
+            "nombre": "Nombre",
+            "categoria": "Categoria",
+            "producto": "Producto"
+        }
+    }
+}

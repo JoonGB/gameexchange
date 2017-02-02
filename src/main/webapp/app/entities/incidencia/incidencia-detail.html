@@ -1,0 +1,39 @@
+
+<div>
+    <h2><span data-translate="gameexchangeApp.incidencia.detail.title">Incidencia</span> {{vm.incidencia.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span data-translate="gameexchangeApp.incidencia.creado">Creado</span></dt>
+        <dd>
+            <span>{{vm.incidencia.creado | date:'medium'}}</span>
+        </dd>
+        <dt><span data-translate="gameexchangeApp.incidencia.descripcion">Descripcion</span></dt>
+        <dd>
+            <span>{{vm.incidencia.descripcion}}</span>
+        </dd>
+        <dt><span data-translate="gameexchangeApp.incidencia.titulo">Titulo</span></dt>
+        <dd>
+            <span>{{vm.incidencia.titulo}}</span>
+        </dd>
+        <dt><span data-translate="gameexchangeApp.incidencia.usuario">Usuario</span></dt>
+        <dd>
+            {{vm.incidencia.usuario.login}}
+        </dd>
+        <dt><span data-translate="gameexchangeApp.incidencia.venta">Venta</span></dt>
+        <dd>
+            <a ui-sref="venta-detail({id:vm.incidencia.venta.id})">{{vm.incidencia.venta.id}}</a>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="incidencia-detail.edit({id:vm.incidencia.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-xs hidden-sm" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

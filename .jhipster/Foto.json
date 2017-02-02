@@ -1,0 +1,35 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "producto",
+            "otherEntityName": "producto",
+            "otherEntityField": "nombre"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "nombre",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "descripcion",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "creado",
+            "fieldType": "ZonedDateTime"
+        },
+        {
+            "fieldName": "foto",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "image"
+        }
+    ],
+    "changelogDate": "20170202194037",
+    "entityTableName": "foto",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no"
+}

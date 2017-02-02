@@ -1,0 +1,30 @@
+{
+    "gameexchangeApp": {
+        "venta" : {
+            "home": {
+                "title": "Ventas",
+                "createLabel": "Create a new Venta",
+                "createOrEditLabel": "Create or edit a Venta",
+                "search": "Search for Venta"
+            },
+            "created": "A new Venta is created with identifier {{ param }}",
+            "updated": "A Venta is updated with identifier {{ param }}",
+            "deleted": "A Venta is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Venta {{ id }}?"
+            },
+            "detail": {
+                "title": "Venta"
+            },
+            "creado": "Creado",
+            "valoracionCliente": "Valoracion Cliente",
+            "valoreacionVendedor": "Valoreacion Vendedor",
+            "comentarioCliente": "Comentario Cliente",
+            "comentarioVendedor": "Comentario Vendedor",
+            "vendedor": "Vendedor",
+            "cliente": "Cliente",
+            "producto": "Producto",
+            "incidencia": "Incidencia"
+        }
+    }
+}

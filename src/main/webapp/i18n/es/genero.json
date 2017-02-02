@@ -1,0 +1,10 @@
+{
+    "gameexchangeApp": {
+        "Genero" : {
+            "null": "",
+            "MUJER": "MUJER",
+            "HOMBRE": "HOMBRE",
+            "OTRO": "OTRO"
+        }
+    }
+}

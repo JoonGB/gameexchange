@@ -1,0 +1,46 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "user",
+            "otherEntityName": "user",
+            "otherEntityField": "login",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "userExt"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "genero",
+            "fieldType": "Genero",
+            "fieldValues": "MUJER,HOMBRE,OTRO"
+        },
+        {
+            "fieldName": "ciudad",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "fechaNacimiento",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "cp",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "foto",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "image"
+        },
+        {
+            "fieldName": "telefono",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20170202193748",
+    "entityTableName": "user_ext",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no"
+}

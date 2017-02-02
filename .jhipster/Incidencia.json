@@ -1,0 +1,36 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "usuario",
+            "otherEntityName": "user",
+            "otherEntityField": "login"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "venta",
+            "otherEntityName": "venta",
+            "otherEntityField": "id"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "creado",
+            "fieldType": "ZonedDateTime"
+        },
+        {
+            "fieldName": "descripcion",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "titulo",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20170202194033",
+    "entityTableName": "incidencia",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no"
+}

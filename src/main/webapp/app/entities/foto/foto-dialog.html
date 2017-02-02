@@ -1,0 +1,76 @@
+
+<form name="editForm" role="form" novalidate ng-submit="vm.save()">
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="vm.clear()">&times;</button>
+        <h4 class="modal-title" id="myFotoLabel" data-translate="gameexchangeApp.foto.home.createOrEditLabel">Create or edit a Foto</h4>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" ng-show="vm.foto.id">
+            <label for="id" data-translate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="vm.foto.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="gameexchangeApp.foto.nombre" for="field_nombre">Nombre</label>
+            <input type="text" class="form-control" name="nombre" id="field_nombre"
+                    ng-model="vm.foto.nombre"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="gameexchangeApp.foto.descripcion" for="field_descripcion">Descripcion</label>
+            <input type="text" class="form-control" name="descripcion" id="field_descripcion"
+                    ng-model="vm.foto.descripcion"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="gameexchangeApp.foto.creado" for="field_creado">Creado</label>
+                <div class="input-group">
+                    <input id="field_creado" type="text" class="form-control" name="creado" datetime-picker="{{dateformat}}" ng-model="vm.foto.creado" is-open="vm.datePickerOpenStatus.creado"
+                      />
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="vm.openCalendar('creado')"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </div>
+        </div>
+        <div class="form-group" ngf-drop ngf-change="vm.setFoto($file, vm.foto)" ngf-pattern="'image/*'">
+            <label class="control-label" data-translate="gameexchangeApp.foto.foto" for="field_foto">Foto</label>
+            <div>
+                <img data-ng-src="{{'data:' + vm.foto.fotoContentType + ';base64,' + vm.foto.foto}}" style="max-height: 100px;" ng-if="vm.foto.foto" alt="foto image"/>
+                <div ng-if="vm.foto.foto" class="help-block clearfix">
+                    <span class="pull-left">{{vm.foto.fotoContentType}}, {{vm.byteSize(vm.foto.foto)}}</span>
+                    <button type="button" ng-click="vm.foto.foto=null;vm.foto.fotoContentType=null;"
+                            class="btn btn-default btn-xs pull-right">
+                        <span class="glyphicon glyphicon-remove"></span>
+                    </button>
+                </div>
+                <button type="button" ngf-select class="btn btn-default btn-block"
+                        ngf-change="vm.setFoto($file, vm.foto)" accept="image/*" data-translate="entity.action.addimage">
+                    Add image
+                </button>
+            </div>
+            <input type="hidden" class="form-control" name="foto" id="field_foto"
+                    ng-model="vm.foto.foto"
+                     />
+            <input type="hidden" class="form-control" name="fotoContentType" id="field_fotoContentType"
+                    ng-model="vm.foto.fotoContentType" />
+        </div>
+
+        <div class="form-group">
+            <label data-translate="gameexchangeApp.foto.producto" for="field_producto">Producto</label>
+            <select class="form-control" id="field_producto" name="producto" ng-model="vm.foto.producto" ng-options="producto as producto.nombre for producto in vm.productos track by producto.id">
+                <option value=""></option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span data-translate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span data-translate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

@@ -1,0 +1,82 @@
+enum Genero{
+MUJER, HOMBRE, OTRO
+}
+
+entity UserExt{
+	genero Genero,
+    ciudad String,
+    fechaNacimiento LocalDate,
+    cp Integer,
+    foto ImageBlob,
+    telefono String
+}
+
+entity Incidencia{
+	creado ZonedDateTime,
+    descripcion String,
+    titulo String
+}
+
+entity Mensaje{
+	creado ZonedDateTime,
+    texto String
+}
+
+entity Conversacion{
+	creado ZonedDateTime
+}
+
+entity Producto{
+	descripcion String,
+    creado ZonedDateTime,
+    precio Double,
+    nombre String
+}
+
+entity Foto{
+	nombre String,
+    descripcion String,
+    creado ZonedDateTime,
+    foto ImageBlob
+}
+
+entity Videojuego{
+	nombre String
+}
+
+entity Categoria{
+	nombre String,
+    descripcion String
+}
+
+entity Venta{
+	creado ZonedDateTime,
+    valoracionCliente Integer,
+    valoreacionVendedor Integer,
+    comentarioCliente String,
+    comentarioVendedor String
+}
+
+relationship ManyToMany{
+  	Videojuego{categoria(nombre)} to Categoria{videojuego}
+}
+
+
+relationship ManyToOne{
+	Mensaje{conversacion} to Conversacion{mensaje},
+    Mensaje{emisor(login)} to User,
+    Mensaje{receptor(login)} to User,
+    Foto{producto(nombre)} to Producto{foto},
+    Producto{videojuego(nombre)} to Videojuego{producto},
+    Venta{vendedor(login)} to User,
+    Venta{cliente(login)} to User,
+    Venta{producto(nombre)} to Producto{venta},
+    Incidencia{usuario(login)} to User,
+    Incidencia{venta} to Venta{incidencia},
+    Producto{usuario(login)} to User
+
+}
+
+relationship OneToOne{
+	UserExt{user(login)} to User
+}

@@ -1,0 +1,26 @@
+{
+    "gameexchangeApp": {
+        "mensaje" : {
+            "home": {
+                "title": "Mensajes",
+                "createLabel": "Create a new Mensaje",
+                "createOrEditLabel": "Create or edit a Mensaje",
+                "search": "Search for Mensaje"
+            },
+            "created": "A new Mensaje is created with identifier {{ param }}",
+            "updated": "A Mensaje is updated with identifier {{ param }}",
+            "deleted": "A Mensaje is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Mensaje {{ id }}?"
+            },
+            "detail": {
+                "title": "Mensaje"
+            },
+            "creado": "Creado",
+            "texto": "Texto",
+            "conversacion": "Conversacion",
+            "emisor": "Emisor",
+            "receptor": "Receptor"
+        }
+    }
+}

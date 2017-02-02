@@ -1,0 +1,56 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "vendedor",
+            "otherEntityName": "user",
+            "otherEntityField": "login"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "cliente",
+            "otherEntityName": "user",
+            "otherEntityField": "login"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "producto",
+            "otherEntityName": "producto",
+            "otherEntityField": "nombre"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "incidencia",
+            "otherEntityName": "incidencia",
+            "otherEntityRelationshipName": "venta"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "creado",
+            "fieldType": "ZonedDateTime"
+        },
+        {
+            "fieldName": "valoracionCliente",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "valoreacionVendedor",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "comentarioCliente",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "comentarioVendedor",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20170202194040",
+    "entityTableName": "venta",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no"
+}

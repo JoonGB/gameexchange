@@ -1,0 +1,52 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "videojuego",
+            "otherEntityName": "videojuego",
+            "otherEntityField": "nombre"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "usuario",
+            "otherEntityName": "user",
+            "otherEntityField": "login"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "foto",
+            "otherEntityName": "foto",
+            "otherEntityRelationshipName": "producto"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "venta",
+            "otherEntityName": "venta",
+            "otherEntityRelationshipName": "producto"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "descripcion",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "creado",
+            "fieldType": "ZonedDateTime"
+        },
+        {
+            "fieldName": "precio",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "nombre",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20170202194036",
+    "entityTableName": "producto",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no"
+}

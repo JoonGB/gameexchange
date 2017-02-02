@@ -1,0 +1,29 @@
+{
+    "gameexchangeApp": {
+        "producto" : {
+            "home": {
+                "title": "Productos",
+                "createLabel": "Crear nuevo Producto",
+                "createOrEditLabel": "Crear o editar Producto",
+                "search": "Search for Producto"
+            },
+            "created": "Un nuevo Producto ha sido creado con el identificador {{ param }}",
+            "updated": "Un Producto ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un Producto ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar Producto {{ id }}?"
+            },
+            "detail": {
+                "title": "Producto"
+            },
+            "descripcion": "Descripcion",
+            "creado": "Creado",
+            "precio": "Precio",
+            "nombre": "Nombre",
+            "videojuego": "Videojuego",
+            "usuario": "Usuario",
+            "foto": "Foto",
+            "venta": "Venta"
+        }
+    }
+}

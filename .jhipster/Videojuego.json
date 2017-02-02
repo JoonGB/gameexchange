@@ -1,0 +1,30 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "many-to-many",
+            "otherEntityRelationshipName": "videojuego",
+            "relationshipName": "categoria",
+            "otherEntityName": "categoria",
+            "otherEntityField": "nombre",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "producto",
+            "otherEntityName": "producto",
+            "otherEntityRelationshipName": "videojuego"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "nombre",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20170202194038",
+    "entityTableName": "videojuego",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no"
+}

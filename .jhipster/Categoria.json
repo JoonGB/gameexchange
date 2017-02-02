@@ -1,0 +1,27 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "many-to-many",
+            "relationshipName": "videojuego",
+            "otherEntityName": "videojuego",
+            "ownerSide": false,
+            "otherEntityRelationshipName": "categoria"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "nombre",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "descripcion",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20170202194039",
+    "entityTableName": "categoria",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no"
+}
