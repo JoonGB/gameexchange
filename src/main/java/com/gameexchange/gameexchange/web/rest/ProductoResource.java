@@ -1,8 +1,10 @@
 package com.gameexchange.gameexchange.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
+import com.gameexchange.gameexchange.domain.Categoria;
 import com.gameexchange.gameexchange.domain.Producto;
 
+import com.gameexchange.gameexchange.repository.CategoriaRepository;
 import com.gameexchange.gameexchange.repository.ProductoRepository;
 import com.gameexchange.gameexchange.web.rest.util.HeaderUtil;
 
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.inject.Inject;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -27,9 +30,11 @@ import java.util.Optional;
 public class ProductoResource {
 
     private final Logger log = LoggerFactory.getLogger(ProductoResource.class);
-        
+
     @Inject
     private ProductoRepository productoRepository;
+    @Inject
+    private CategoriaRepository categoriaRepository;
 
     /**
      * POST  /productos : Create a new producto.
@@ -117,5 +122,23 @@ public class ProductoResource {
         productoRepository.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert("producto", id.toString())).build();
     }
+
+    @GetMapping("/productos/byCategoria/{nombre}")
+    @Timed
+    public List<Producto> getProductoByCategoria(@PathVariable String nombre) {
+        log.debug("REST request to get Producto by categoria : {}", nombre);
+
+        List<Producto> productos = new ArrayList<>();
+
+        Optional<Categoria> categoriaOptional = categoriaRepository.findByNombre(nombre);
+
+
+        if (categoriaOptional.isPresent()) {
+            productos = productoRepository.findByCategoria(categoriaOptional.get());
+        }
+
+        return productos;
+    }
+
 
 }
