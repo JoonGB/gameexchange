@@ -22,11 +22,21 @@ public class HomePageResource {
     @Inject
     private HomePageRepository homePageRepository;
 
-    @GetMapping("/home/{name}/like")
+    // #1 Función: Buscador
+    @GetMapping("/home/productos/like/{name}")
     @Timed
     public List<Producto> getProductosLike(@PathVariable String name) {
         log.debug("REST request to get all Productos like: {}", name);
         List<Producto> productos = homePageRepository.findByNombreContaining("%"+name+"%");
+        return productos;
+    }
+
+    // #2 Función: Filtrar por precio
+    @GetMapping("/home/productos/between/{pmin}/{pmax}")
+    @Timed
+    public List<Producto> getProductosPrecioBetween(@PathVariable Double pmin, Double pmax) {
+        log.debug("REST request to get all Productos with Precio between: {}", pmin, pmax);
+        List<Producto> productos = homePageRepository.findByPrecioBetween(pmin, pmax);
         return productos;
     }
 

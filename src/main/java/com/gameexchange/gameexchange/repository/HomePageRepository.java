@@ -8,7 +8,12 @@ import org.springframework.data.repository.query.Param;
 
 public interface HomePageRepository extends JpaRepository<Producto,Long> {
 
+    // #1
     List<Producto> findByNombreContaining(@Param("name") String name);
+
+    // #2
+    List<Producto> findByPrecioBetween(@Param("pmin") Double pmin, @Param("pmax") Double pmax);
+
 
 
 
