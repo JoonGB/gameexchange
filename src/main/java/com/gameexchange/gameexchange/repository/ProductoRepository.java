@@ -20,4 +20,14 @@ public interface ProductoRepository extends JpaRepository<Producto,Long> {
     @Query("select producto from Producto producto where  :categoria member of producto.videojuego.categorias")
     List<Producto> findByCategoria(@Param ("categoria") Categoria categoria);
 
+
+
+
+
+
+
+
+
+
+
 }
