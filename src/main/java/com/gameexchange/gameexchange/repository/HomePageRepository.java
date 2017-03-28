@@ -1,6 +1,9 @@
 package com.gameexchange.gameexchange.repository;
 
 import com.gameexchange.gameexchange.domain.Producto;
+
+import java.time.LocalDate;
+import java.time.ZonedDateTime;
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.query.Param;
@@ -14,9 +17,7 @@ public interface HomePageRepository extends JpaRepository<Producto,Long> {
     // #2
     List<Producto> findByPrecioBetween(@Param("pmin") Double pmin, @Param("pmax") Double pmax);
 
-
-
-
-
+    // #3
+    List<Producto> findByCreadoBetween(@Param("start") ZonedDateTime start, @Param("end") ZonedDateTime end);
 
 }
