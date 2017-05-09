@@ -2,10 +2,13 @@ package com.gameexchange.gameexchange.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
 import com.gameexchange.gameexchange.domain.Categoria;
+import com.gameexchange.gameexchange.domain.Foto;
 import com.gameexchange.gameexchange.domain.Producto;
 
 import com.gameexchange.gameexchange.repository.CategoriaRepository;
 import com.gameexchange.gameexchange.repository.ProductoRepository;
+import com.gameexchange.gameexchange.service.ProductService;
+import com.gameexchange.gameexchange.service.dto.ProductoDTO;
 import com.gameexchange.gameexchange.web.rest.util.HeaderUtil;
 
 import org.slf4j.Logger;
@@ -21,9 +24,10 @@ import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 /**
- * REST controller for managing Producto.
+ * REST controller for managing Producto. q
  */
 @RestController
 @RequestMapping("/api")
@@ -35,6 +39,9 @@ public class ProductoResource {
     private ProductoRepository productoRepository;
     @Inject
     private CategoriaRepository categoriaRepository;
+
+    @Inject
+    private ProductService productService;
 
     /**
      * POST  /productos : Create a new producto.
@@ -91,6 +98,14 @@ public class ProductoResource {
         return productos;
     }
 
+    @GetMapping("/productosdto")
+    @Timed
+    public List<ProductoDTO> getAllProductosDTO() {
+        log.debug("REST request to get all Productos");
+        List<ProductoDTO> productos = productService.getProductos();
+        return productos;
+    }
+
     /**
      * GET  /productos/:id : get the "id" producto.
      *
@@ -107,6 +122,37 @@ public class ProductoResource {
                 result,
                 HttpStatus.OK))
             .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+    }
+
+
+    /**
+     * GET  /productos/:id : get the "id" producto.
+     *
+     * @param id the id of the producto to retrieve
+     * @return the ResponseEntity with status 200 (OK) and with body the producto, or with status 404 (Not Found)
+     */
+    @GetMapping("/productos/{id}/fotos")
+    @Timed
+    public ResponseEntity<Set<Foto>> getFotosDeProducto(@PathVariable Long id) {
+        log.debug("REST request to get Producto : {}", id);
+
+        return new ResponseEntity<>(productService.getFotos(id), HttpStatus.OK);
+
+    }
+
+    @GetMapping("/productos/{id}/fotoPrincipal")
+    @Timed
+    public ResponseEntity<Foto> getFotoPrincipalDeProducto(@PathVariable Long id) {
+        log.debug("REST request to get Producto : {}", id);
+
+        Optional<Foto> fotoOptional = productService.getFotoPrincipal(id);
+
+        if (fotoOptional.isPresent()) {
+            return new ResponseEntity<>(fotoOptional.get(), HttpStatus.OK);
+        }
+
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+
     }
 
     /**

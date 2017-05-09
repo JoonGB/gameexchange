@@ -1,6 +1,7 @@
 package com.gameexchange.gameexchange.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
+import com.gameexchange.gameexchange.domain.Foto;
 import com.gameexchange.gameexchange.domain.Producto;
 import com.gameexchange.gameexchange.repository.HomePageRepository;
 import org.slf4j.Logger;
@@ -18,6 +19,7 @@ import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api")

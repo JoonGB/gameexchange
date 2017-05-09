@@ -1,11 +1,14 @@
 package com.gameexchange.gameexchange.repository;
 
+import com.gameexchange.gameexchange.domain.Foto;
 import com.gameexchange.gameexchange.domain.Producto;
 
-import java.time.LocalDate;
 import java.time.ZonedDateTime;
 import java.util.List;
+import java.util.Map;
+
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 
@@ -19,5 +22,6 @@ public interface HomePageRepository extends JpaRepository<Producto,Long> {
 
     // #3
     List<Producto> findByCreadoBetween(@Param("start") ZonedDateTime start, @Param("end") ZonedDateTime end);
+
 
 }
