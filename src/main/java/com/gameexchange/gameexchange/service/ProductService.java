@@ -61,26 +61,31 @@ public class ProductService {
     public List<ProductoDTO> getProductos() {
 
 
-        return productoRepository.findAll().stream().map(producto -> {
+        return productoRepository.findAll().stream().map(producto ->
 
-            ProductoDTO productoDTO = new ProductoDTO();
-
-            productoDTO.setId(producto.getId());
-            productoDTO.setNombre(producto.getNombre());
-            productoDTO.setDescripcion(producto.getDescripcion());
-            productoDTO.setCreado(producto.getCreado());
-            productoDTO.setPrecio(producto.getPrecio());
-            productoDTO.setUsuario(producto.getUsuario());
-            productoDTO.setFotos(new ArrayList<>(producto.getFotos()));
-            productoDTO.setVentas(new ArrayList<>(producto.getVentas()));
-
-            productoDTO.setFotoPrincipal(getFotoPrincipal(producto.getId()).get());
-
-            return  productoDTO;
+            getProductoDTO(producto)
 
 
-        }).collect(Collectors.toList());
+        ).collect(Collectors.toList());
 
+    }
+
+    public ProductoDTO getProductoDTO(Producto producto) {
+        ProductoDTO productoDTO = new ProductoDTO();
+
+        productoDTO.setId(producto.getId());
+        productoDTO.setNombre(producto.getNombre());
+        productoDTO.setDescripcion(producto.getDescripcion());
+        productoDTO.setCreado(producto.getCreado());
+        productoDTO.setPrecio(producto.getPrecio());
+        productoDTO.setUsuario(producto.getUsuario());
+        productoDTO.setFotos(new ArrayList<>(producto.getFotos()));
+        productoDTO.setVentas(new ArrayList<>(producto.getVentas()));
+        productoDTO.setVideojuego(producto.getVideojuego());
+
+        productoDTO.setFotoPrincipal(getFotoPrincipal(producto.getId()).get());
+
+        return  productoDTO;
     }
 
 

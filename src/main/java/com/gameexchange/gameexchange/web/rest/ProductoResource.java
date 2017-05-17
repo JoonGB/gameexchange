@@ -16,6 +16,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import javax.inject.Inject;
@@ -124,6 +125,20 @@ public class ProductoResource {
             .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
+    @GetMapping("/productosdto/{id}")
+    @Timed
+    @Transactional
+    public ResponseEntity<ProductoDTO> getProductoDTO(@PathVariable Long id) {
+        log.debug("REST request to get Producto : {}", id);
+        Producto producto = productoRepository.findOne(id);
+
+        return Optional.ofNullable(producto)
+            .map(producto1 -> productService.getProductoDTO(producto1))
+            .map(result -> new ResponseEntity<>(
+                result,
+                HttpStatus.OK))
+            .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+    }
 
     /**
      * GET  /productos/:id : get the "id" producto.
