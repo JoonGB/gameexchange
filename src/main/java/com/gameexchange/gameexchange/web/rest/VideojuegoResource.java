@@ -1,8 +1,10 @@
 package com.gameexchange.gameexchange.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
+import com.gameexchange.gameexchange.domain.Foto;
 import com.gameexchange.gameexchange.domain.Videojuego;
 
+import com.gameexchange.gameexchange.repository.FotoRepository;
 import com.gameexchange.gameexchange.repository.VideojuegoRepository;
 import com.gameexchange.gameexchange.web.rest.util.HeaderUtil;
 
@@ -27,9 +29,12 @@ import java.util.Optional;
 public class VideojuegoResource {
 
     private final Logger log = LoggerFactory.getLogger(VideojuegoResource.class);
-        
+
     @Inject
     private VideojuegoRepository videojuegoRepository;
+
+    @Inject
+    private FotoRepository fotoRepository;
 
     /**
      * POST  /videojuegos : Create a new videojuego.
@@ -45,6 +50,11 @@ public class VideojuegoResource {
         if (videojuego.getId() != null) {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert("videojuego", "idexists", "A new videojuego cannot already have an ID")).body(null);
         }
+
+        Foto foto = fotoRepository.findOne(1L);
+        videojuego.setFoto(foto);
+
+
         Videojuego result = videojuegoRepository.save(videojuego);
         return ResponseEntity.created(new URI("/api/videojuegos/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert("videojuego", result.getId().toString()))

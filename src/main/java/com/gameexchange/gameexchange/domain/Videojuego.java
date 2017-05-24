@@ -34,6 +34,10 @@ public class Videojuego implements Serializable {
     @JsonIgnore
     private Set<Producto> productos = new HashSet<>();
 
+    @ManyToOne
+    private Foto foto;
+
+
     public Long getId() {
         return id;
     }
@@ -103,6 +107,14 @@ public class Videojuego implements Serializable {
 
     public void setProductos(Set<Producto> productos) {
         this.productos = productos;
+    }
+
+    public Foto getFoto() {
+        return foto;
+    }
+
+    public void setFoto(Foto foto) {
+        this.foto = foto;
     }
 
     @Override
