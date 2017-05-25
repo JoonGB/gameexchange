@@ -1,0 +1,19 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet author="MARKT (generated)" id="1495734647917-1">
+        <addColumn tableName="videojuego">
+            <column name="caratula" type="varchar(255)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="MARKT (generated)" id="1495734647917-2">
+        <addColumn tableName="videojuego">
+            <column name="miniatura" type="varchar(255)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="MARKT (generated)" id="1495734647917-3">
+        <dropForeignKeyConstraint baseTableName="videojuego" constraintName="FKg1vccj4h8fkvrs4v05ug6pcus"/>
+    </changeSet>
+    <changeSet author="MARKT (generated)" id="1495734647917-4">
+        <dropColumn columnName="foto_id" tableName="videojuego"/>
+    </changeSet>
+</databaseChangeLog>
