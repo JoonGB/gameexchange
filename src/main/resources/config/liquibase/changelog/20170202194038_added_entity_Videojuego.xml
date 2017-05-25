@@ -27,7 +27,8 @@
             <column name="nombre" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
-            <column name="foto_id" type="bigint"/>
+            <column name="caratula" type="varchar(255)"/>
+            <column name="miniatura" type="varchar(255)"/>
 
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
         </createTable>

@@ -6,8 +6,11 @@ import com.gameexchange.gameexchange.domain.Videojuego;
 
 import com.gameexchange.gameexchange.repository.FotoRepository;
 import com.gameexchange.gameexchange.repository.VideojuegoRepository;
+import com.gameexchange.gameexchange.service.VideojuegoService;
 import com.gameexchange.gameexchange.web.rest.util.HeaderUtil;
 
+import com.mashape.unirest.http.JsonNode;
+import com.mashape.unirest.http.exceptions.UnirestException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpHeaders;
@@ -34,6 +37,10 @@ public class VideojuegoResource {
     private VideojuegoRepository videojuegoRepository;
 
     @Inject
+    private VideojuegoService videojuegoService;
+
+
+    @Inject
     private FotoRepository fotoRepository;
 
     /**
@@ -50,10 +57,6 @@ public class VideojuegoResource {
         if (videojuego.getId() != null) {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert("videojuego", "idexists", "A new videojuego cannot already have an ID")).body(null);
         }
-
-        Foto foto = fotoRepository.findOne(1L);
-        videojuego.setFoto(foto);
-
 
         Videojuego result = videojuegoRepository.save(videojuego);
         return ResponseEntity.created(new URI("/api/videojuegos/" + result.getId()))
@@ -126,6 +129,13 @@ public class VideojuegoResource {
         log.debug("REST request to delete Videojuego : {}", id);
         videojuegoRepository.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert("videojuego", id.toString())).build();
+    }
+
+    @GetMapping("/videojuegos/busqueda/{busqueda}")
+    @Timed
+    public JsonNode busquedaVideojuego(@PathVariable String busqueda) throws UnirestException {
+        JsonNode resultados = videojuegoService.busquedaVideojuego(busqueda);
+        return resultados;
     }
 
 }

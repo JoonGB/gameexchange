@@ -19,23 +19,14 @@ import java.util.Set;
 public class ProductoDTO {
 
     private Long id;
-
     private String descripcion;
-
     private ZonedDateTime creado;
-
     private Double precio;
-
     private String nombre;
-
     private Videojuego videojuego;
-
     private User usuario;
-
     private List<Foto> fotos = new ArrayList<>();
-
     private List<Venta> ventas = new ArrayList<>();
-
     private Foto fotoPrincipal;
 
     public Long getId() {

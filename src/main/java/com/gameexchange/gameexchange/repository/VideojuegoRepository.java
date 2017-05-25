@@ -19,4 +19,5 @@ public interface VideojuegoRepository extends JpaRepository<Videojuego,Long> {
     @Query("select videojuego from Videojuego videojuego left join fetch videojuego.categorias where videojuego.id =:id")
     Videojuego findOneWithEagerRelationships(@Param("id") Long id);
 
+
 }

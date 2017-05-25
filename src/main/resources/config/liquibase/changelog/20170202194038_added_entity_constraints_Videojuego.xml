@@ -19,14 +19,6 @@
                                  referencedColumnNames="id"
                                  referencedTableName="categoria"/>
 
-        <addForeignKeyConstraint baseColumnNames="foto_id"
-                                 baseTableName="videojuego"
-                                 constraintName="FKg1vccj4h8fkvrs4v05ug6pcus"
-                                 deferrable="false"
-                                 initiallyDeferred="false"
-                                 referencedColumnNames="id"
-                                 referencedTableName="foto"/>
-
 
     </changeSet>
 </databaseChangeLog>
