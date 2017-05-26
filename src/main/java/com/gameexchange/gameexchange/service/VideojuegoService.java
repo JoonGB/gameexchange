@@ -1,5 +1,6 @@
 package com.gameexchange.gameexchange.service;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.gameexchange.gameexchange.domain.Videojuego;
 import com.gameexchange.gameexchange.repository.FotoRepository;
 import com.gameexchange.gameexchange.repository.VideojuegoRepository;
@@ -11,8 +12,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import springfox.documentation.spring.web.json.Json;
 
 import javax.inject.Inject;
+import java.io.IOException;
+import java.io.StringReader;
 import java.util.List;
 
 /**
@@ -29,14 +33,27 @@ public class VideojuegoService {
     @Inject
     private FotoRepository fotoRepository;
 
-    public JsonNode busquedaVideojuego(String busqueda) throws UnirestException {
-        HttpResponse<JsonNode> response = Unirest.get("https://igdbcom-internet-game-database-v1.p.mashape.com/games/?fields=name,themes,cover&limit=50&offset=0&order=release_dates.date%3Adesc&search="+busqueda)
+    public String busquedaVideojuego(String busqueda) throws UnirestException {
+        HttpResponse<String> response = Unirest.get("https://igdbcom-internet-game-database-v1.p.mashape.com/games/?fields=name,themes,cover&limit=50&offset=0&order=release_dates.date%3Adesc&search="+busqueda)
             .header("X-Mashape-Key", "NxjgTRbXrHmshL7BkVXijTp7WpK7p1XJXkmjsnFDJ46GZFF1kQ")
             .header("Accept", "application/json")
-            .asJson();
-        System.out.println(response);
+            .asString();
         return response.getBody();
     }
+
+
+    private String jsonToVideojuego (String json) {
+
+
+        return json;
+    }
+
+    /*private List<Videojuego> jsonToVideojuego(JsonNode json) {
+        List<JsonNode> array = (List<JsonNode>) json.getArray();
+        for(JsonNode jsonNode : array) {
+            jsonNode.get
+        }
+    }*/
 
 
     /*private List<Videojuego> jsonToVideojuego (JsonNode json) {

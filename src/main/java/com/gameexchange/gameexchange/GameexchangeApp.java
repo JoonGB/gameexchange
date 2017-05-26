@@ -4,6 +4,9 @@ import com.gameexchange.gameexchange.config.Constants;
 import com.gameexchange.gameexchange.config.DefaultProfileUtil;
 import com.gameexchange.gameexchange.config.JHipsterProperties;
 
+import com.gameexchange.gameexchange.domain.Categoria;
+import com.gameexchange.gameexchange.repository.CategoriaRepository;
+import com.gameexchange.gameexchange.web.rest.CategoriaResource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;

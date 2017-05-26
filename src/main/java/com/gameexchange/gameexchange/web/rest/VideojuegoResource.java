@@ -19,6 +19,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.inject.Inject;
+import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
@@ -133,8 +134,8 @@ public class VideojuegoResource {
 
     @GetMapping("/videojuegos/busqueda/{busqueda}")
     @Timed
-    public JsonNode busquedaVideojuego(@PathVariable String busqueda) throws UnirestException {
-        JsonNode resultados = videojuegoService.busquedaVideojuego(busqueda);
+    public String busquedaVideojuego(@PathVariable String busqueda) throws UnirestException, IOException {
+        String resultados = videojuegoService.busquedaVideojuego(busqueda);
         return resultados;
     }
 

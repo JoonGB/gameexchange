@@ -77,8 +77,7 @@ public class CategoriaResourceIntTest {
      */
     public static Categoria createEntity(EntityManager em) {
         Categoria categoria = new Categoria()
-                .nombre(DEFAULT_NOMBRE)
-                .descripcion(DEFAULT_DESCRIPCION);
+                .nombre(DEFAULT_NOMBRE);
         return categoria;
     }
 
