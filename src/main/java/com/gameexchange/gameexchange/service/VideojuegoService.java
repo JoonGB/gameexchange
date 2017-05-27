@@ -1,9 +1,13 @@
 package com.gameexchange.gameexchange.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.gameexchange.gameexchange.domain.Categoria;
 import com.gameexchange.gameexchange.domain.Videojuego;
 import com.gameexchange.gameexchange.repository.FotoRepository;
 import com.gameexchange.gameexchange.repository.VideojuegoRepository;
+import com.gameexchange.gameexchange.service.dto.IGDB_API.IGDBResponse;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.Unirest;
@@ -17,7 +21,7 @@ import springfox.documentation.spring.web.json.Json;
 import javax.inject.Inject;
 import java.io.IOException;
 import java.io.StringReader;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by DAM on 2/5/17.
@@ -33,19 +37,78 @@ public class VideojuegoService {
     @Inject
     private FotoRepository fotoRepository;
 
-    public String busquedaVideojuego(String busqueda) throws UnirestException {
-        HttpResponse<String> response = Unirest.get("https://igdbcom-internet-game-database-v1.p.mashape.com/games/?fields=name,themes,cover&limit=50&offset=0&order=release_dates.date%3Adesc&search="+busqueda)
+    public List<IGDBResponse> busquedaVideojuego(String busqueda) throws UnirestException {
+        HttpResponse<String> response = Unirest.get("https://igdbcom-internet-game-database-v1.p.mashape.com/games/?fields=name,genres,cover&limit=50&offset=0&order=release_dates.date%3Adesc&search="+busqueda)
             .header("X-Mashape-Key", "NxjgTRbXrHmshL7BkVXijTp7WpK7p1XJXkmjsnFDJ46GZFF1kQ")
             .header("Accept", "application/json")
             .asString();
-        return response.getBody();
+        return jsonToVideojuego(response.getBody());
     }
 
 
-    private String jsonToVideojuego (String json) {
+    private List<IGDBResponse> jsonToVideojuego (String json) {
+        GsonBuilder builder = new GsonBuilder();
+        Gson gson = builder.create();
+        List<IGDBResponse> responses = Arrays.asList(gson.fromJson(json, IGDBResponse[].class));
+
+        List<Videojuego> videojuegos = new ArrayList<>();
+        for (IGDBResponse igdbResponse : responses) {
+            Integer id = igdbResponse.getId();
+            String nombre = igdbResponse.getName();
+            Set<Categoria> categorias = new HashSet<>();
+            if (igdbResponse.getGenres() != null) {
+                for (Integer categoria : igdbResponse.getGenres()) {
+                    String nombreCategoria;
+                    if (categoria == 2) {
+                        nombreCategoria = "Point and Click";
+                    } else if (categoria == 4) {
+                        nombreCategoria = "Peleas";
+                    } else if (categoria == 5) {
+                        nombreCategoria = "Shooter";
+                    } else if (categoria == 7) {
+                        nombreCategoria = "Música";
+                    } else if (categoria == 8) {
+                        nombreCategoria = "Plataformas";
+                    } else if (categoria == 9) {
+                        nombreCategoria = "Puzzle";
+                    } else if (categoria == 10) {
+                        nombreCategoria = "Carreras";
+                    } else if (categoria == 11) {
+                        nombreCategoria = "RTS";
+                    } else if (categoria == 12) {
+                        nombreCategoria = "RPG";
+                    } else if (categoria == 13) {
+                        nombreCategoria = "Simulador";
+                    } else if (categoria == 14) {
+                        nombreCategoria = "Deporte";
+                    } else if (categoria == 15) {
+                        nombreCategoria = "Estrategia";
+                    } else if (categoria == 16) {
+                        nombreCategoria = "TBS";
+                    } else if (categoria == 24) {
+                        nombreCategoria = "Tactico";
+                    } else if (categoria == 25) {
+                        nombreCategoria = "Hack and Slash";
+                    } else if (categoria == 25) {
+                        nombreCategoria = "Hack and Slash";
+                    }
+                    //categorias.add(new Categoria(categoria, ));
+                }
+            }
+            //videojuegos.add(new Videojuego(igdbResponse.getId(), igdbResponse.getName(), new Set<Categoria>(new ArrayList<Categoria>())));
 
 
-        return json;
+        }
+        return responses;
+        /*List<String> strings = new ArrayList<>();
+        JsonParser parser = new JsonParser();
+        JsonElement elements = parser.parse(json);
+        JsonObject object = elements.getAsJsonObject();
+        Set<Map.Entry<String, JsonElement>> entries = object.entrySet();
+        for(Map.Entry<String, JsonElement> entry : entries) {
+            strings.add(entry.getKey());
+        }
+        return strings;*/
     }
 
     /*private List<Videojuego> jsonToVideojuego(JsonNode json) {

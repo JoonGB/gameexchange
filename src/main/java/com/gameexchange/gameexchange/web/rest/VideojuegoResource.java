@@ -7,6 +7,7 @@ import com.gameexchange.gameexchange.domain.Videojuego;
 import com.gameexchange.gameexchange.repository.FotoRepository;
 import com.gameexchange.gameexchange.repository.VideojuegoRepository;
 import com.gameexchange.gameexchange.service.VideojuegoService;
+import com.gameexchange.gameexchange.service.dto.IGDB_API.IGDBResponse;
 import com.gameexchange.gameexchange.web.rest.util.HeaderUtil;
 
 import com.mashape.unirest.http.JsonNode;
@@ -134,8 +135,8 @@ public class VideojuegoResource {
 
     @GetMapping("/videojuegos/busqueda/{busqueda}")
     @Timed
-    public String busquedaVideojuego(@PathVariable String busqueda) throws UnirestException, IOException {
-        String resultados = videojuegoService.busquedaVideojuego(busqueda);
+    public List<IGDBResponse> busquedaVideojuego(@PathVariable String busqueda) throws UnirestException, IOException {
+        List<IGDBResponse> resultados = videojuegoService.busquedaVideojuego(busqueda);
         return resultados;
     }
 
