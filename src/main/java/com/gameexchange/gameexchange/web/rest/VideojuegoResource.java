@@ -135,8 +135,8 @@ public class VideojuegoResource {
 
     @GetMapping("/videojuegos/busqueda/{busqueda}")
     @Timed
-    public List<IGDBResponse> busquedaVideojuego(@PathVariable String busqueda) throws UnirestException, IOException {
-        List<IGDBResponse> resultados = videojuegoService.busquedaVideojuego(busqueda);
+    public List<Videojuego> busquedaVideojuego(@PathVariable String busqueda) throws UnirestException, IOException {
+        List<Videojuego> resultados = videojuegoService.busquedaVideojuego(busqueda);
         return resultados;
     }
 

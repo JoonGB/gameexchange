@@ -37,7 +37,7 @@ public class VideojuegoService {
     @Inject
     private FotoRepository fotoRepository;
 
-    public List<IGDBResponse> busquedaVideojuego(String busqueda) throws UnirestException {
+    public List<Videojuego> busquedaVideojuego(String busqueda) throws UnirestException {
         HttpResponse<String> response = Unirest.get("https://igdbcom-internet-game-database-v1.p.mashape.com/games/?fields=name,genres,cover&limit=50&offset=0&order=release_dates.date%3Adesc&search="+busqueda)
             .header("X-Mashape-Key", "NxjgTRbXrHmshL7BkVXijTp7WpK7p1XJXkmjsnFDJ46GZFF1kQ")
             .header("Accept", "application/json")
@@ -46,7 +46,7 @@ public class VideojuegoService {
     }
 
 
-    private List<IGDBResponse> jsonToVideojuego (String json) {
+    private List<Videojuego> jsonToVideojuego (String json) {
         GsonBuilder builder = new GsonBuilder();
         Gson gson = builder.create();
         List<IGDBResponse> responses = Arrays.asList(gson.fromJson(json, IGDBResponse[].class));
@@ -91,15 +91,39 @@ public class VideojuegoService {
                         nombreCategoria = "Hack and Slash";
                     } else if (categoria == 25) {
                         nombreCategoria = "Hack and Slash";
+                    } else if (categoria == 26) {
+                        nombreCategoria = "Quiz/Trivia";
+                    } else if (categoria == 30) {
+                        nombreCategoria = "Pinball";
+                    } else if (categoria == 31) {
+                        nombreCategoria = "Aventura";
+                    } else if (categoria == 32) {
+                        nombreCategoria = "Indie";
+                    } else {
+                        nombreCategoria = "Arcade";
                     }
-                    //categorias.add(new Categoria(categoria, ));
+                    Categoria categoriaJuego = new Categoria();
+                    categoriaJuego.setId(categoria.longValue());
+                    categoriaJuego.setNombre(nombreCategoria);
+                    categoriaJuego.setDescripcion("");
+                    categorias.add(categoriaJuego);
                 }
             }
-            //videojuegos.add(new Videojuego(igdbResponse.getId(), igdbResponse.getName(), new Set<Categoria>(new ArrayList<Categoria>())));
-
-
+            String miniatura = "";
+            String caratula = "";
+            if (igdbResponse.getCover() != null){
+                miniatura = igdbResponse.getCover().getUrl();
+                caratula = miniatura.replace("t_thumb", "t_cover_big");
+            }
+            Videojuego nuevoVideojuego = new Videojuego();
+            nuevoVideojuego.setId(id.longValue());
+            nuevoVideojuego.setNombre(nombre);
+            nuevoVideojuego.setCategorias(categorias);
+            nuevoVideojuego.setMiniatura(miniatura);
+            nuevoVideojuego.setCaratula(caratula);
+            videojuegos.add(nuevoVideojuego);
         }
-        return responses;
+        return videojuegos;
         /*List<String> strings = new ArrayList<>();
         JsonParser parser = new JsonParser();
         JsonElement elements = parser.parse(json);
