@@ -132,8 +132,8 @@ public class ProductoResource {
         log.debug("REST request to get Producto : {}", id);
         Producto producto = productoRepository.findOne(id);
 
-        return Optional.ofNullable(producto)
-            .map(producto1 -> productService.getProductoDTO(producto1))
+        ProductoDTO productoDTO = productService.getProductoDTO(producto);
+        return Optional.ofNullable(productoDTO)
             .map(result -> new ResponseEntity<>(
                 result,
                 HttpStatus.OK))

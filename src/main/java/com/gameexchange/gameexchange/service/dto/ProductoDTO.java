@@ -1,10 +1,7 @@
 package com.gameexchange.gameexchange.service.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.gameexchange.gameexchange.domain.Foto;
-import com.gameexchange.gameexchange.domain.User;
-import com.gameexchange.gameexchange.domain.Venta;
-import com.gameexchange.gameexchange.domain.Videojuego;
+import com.gameexchange.gameexchange.domain.*;
 
 import javax.persistence.*;
 import java.time.ZonedDateTime;
@@ -25,6 +22,7 @@ public class ProductoDTO {
     private String nombre;
     private Videojuego videojuego;
     private User usuario;
+    private UserExt usuarioext;
     private List<Foto> fotos = new ArrayList<>();
     private List<Venta> ventas = new ArrayList<>();
     private Foto fotoPrincipal;
@@ -107,5 +105,13 @@ public class ProductoDTO {
 
     public void setFotoPrincipal(Foto fotoPrincipal) {
         this.fotoPrincipal = fotoPrincipal;
+    }
+
+    public UserExt getUsuarioext() {
+        return usuarioext;
+    }
+
+    public void setUsuarioext(UserExt usuarioext) {
+        this.usuarioext = usuarioext;
     }
 }
