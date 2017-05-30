@@ -112,7 +112,7 @@ public class VideojuegoService {
             String miniatura = "";
             String caratula = "";
             if (igdbResponse.getCover() != null){
-                miniatura = igdbResponse.getCover().getUrl();
+                miniatura = "http:" + igdbResponse.getCover().getUrl();
                 caratula = miniatura.replace("t_thumb", "t_cover_big");
             }
             Videojuego nuevoVideojuego = new Videojuego();

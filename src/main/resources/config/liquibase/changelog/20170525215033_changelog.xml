@@ -1,0 +1,27 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet author="JonGarcia (generated)" id="1495749039389-1">
+        <addForeignKeyConstraint baseColumnNames="producto_id" baseTableName="venta" constraintName="FK1wljq30qekjupdmpom9laqr33" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="producto"/>
+    </changeSet>
+    <changeSet author="JonGarcia (generated)" id="1495749039389-2">
+        <addForeignKeyConstraint baseColumnNames="videojuegos_id" baseTableName="videojuego_categoria" constraintName="FK3xmekkm9h090pp89tjatdoo0n" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="videojuego"/>
+    </changeSet>
+    <changeSet author="JonGarcia (generated)" id="1495749039389-3">
+        <addForeignKeyConstraint baseColumnNames="vendedor_id" baseTableName="venta" constraintName="FK9q07vwuk5gf3x7s7ftfqf0ajs" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user"/>
+    </changeSet>
+    <changeSet author="JonGarcia (generated)" id="1495749039389-4">
+        <addForeignKeyConstraint baseColumnNames="cliente_id" baseTableName="venta" constraintName="FKi6tovl4dyyj00ehv2ltyfutw7" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user"/>
+    </changeSet>
+    <changeSet author="JonGarcia (generated)" id="1495749039389-5">
+        <addForeignKeyConstraint baseColumnNames="usuario_id" baseTableName="producto" constraintName="FKkoq93b5c16owqkgh595d3ffdm" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user"/>
+    </changeSet>
+    <changeSet author="JonGarcia (generated)" id="1495749039389-6">
+        <addForeignKeyConstraint baseColumnNames="producto_id" baseTableName="foto" constraintName="FKomlrc9y9utqxavpbjk1yocuef" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="producto"/>
+    </changeSet>
+    <changeSet author="JonGarcia (generated)" id="1495749039389-7">
+        <addForeignKeyConstraint baseColumnNames="categorias_id" baseTableName="videojuego_categoria" constraintName="FKr32kvydjl9d3ydoxhirw4ecql" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="categoria"/>
+    </changeSet>
+    <changeSet author="JonGarcia (generated)" id="1495749039389-8">
+        <addForeignKeyConstraint baseColumnNames="videojuego_id" baseTableName="producto" constraintName="FKtqwac7o9ulnmjks03ftda57d0" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="videojuego"/>
+    </changeSet>
+</databaseChangeLog>
