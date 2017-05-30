@@ -2,8 +2,11 @@ package com.gameexchange.gameexchange.service;
 
 import com.gameexchange.gameexchange.domain.Foto;
 import com.gameexchange.gameexchange.domain.Producto;
+import com.gameexchange.gameexchange.domain.User;
+import com.gameexchange.gameexchange.domain.UserExt;
 import com.gameexchange.gameexchange.repository.FotoRepository;
 import com.gameexchange.gameexchange.repository.ProductoRepository;
+import com.gameexchange.gameexchange.repository.UserExtRepository;
 import com.gameexchange.gameexchange.service.dto.ProductoDTO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,9 +21,6 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-/**
- * Created by DAM on 2/5/17.
- */
 @Service
 @Transactional
 public class ProductService {
@@ -31,6 +31,9 @@ public class ProductService {
 
     @Inject
     private FotoRepository fotoRepository;
+
+    @Inject
+    private UserExtRepository userExtRepository;
 
     public Optional<Foto> getFotoPrincipal(Long idProducto) {
 
@@ -70,6 +73,13 @@ public class ProductService {
 
     }
 
+    public UserExt getUserExt(User user) {
+
+
+        return userExtRepository.findByUser(user);
+
+    }
+
     public ProductoDTO getProductoDTO(Producto producto) {
         ProductoDTO productoDTO = new ProductoDTO();
 
@@ -82,6 +92,7 @@ public class ProductService {
         productoDTO.setFotos(new ArrayList<>(producto.getFotos()));
         productoDTO.setVentas(new ArrayList<>(producto.getVentas()));
         productoDTO.setVideojuego(producto.getVideojuego());
+        productoDTO.setUsuarioext(getUserExt(producto.getUsuario()));
 
         productoDTO.setFotoPrincipal(getFotoPrincipal(producto.getId()).get());
 
