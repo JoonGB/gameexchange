@@ -107,7 +107,7 @@ public class UserResource {
      *
      * @param managedUserVM the user to update
      * @return the ResponseEntity with status 200 (OK) and with body the updated user,
-     * or with status 400 (Bad Request) if the login or email is already in use,
+     * or with status 400 (Bad Request) if the login or email is already in use,0
      * or with status 500 (Internal Server Error) if the user couldn't be updated
      */
     @PutMapping("/users")
