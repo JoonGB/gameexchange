@@ -17,8 +17,8 @@ public interface ProductoRepository extends JpaRepository<Producto,Long> {
     @Query("select producto from Producto producto where producto.usuario.login = ?#{principal.username}")
     List<Producto> findByUsuarioIsCurrentUser();
 
-    @Query("select producto from Producto producto where  :categoria member of producto.videojuego.categorias")
-    List<Producto> findByCategoria(@Param ("categoria") Categoria categoria);
+    /*@Query("select producto from Producto producto where  :categoria member of producto.videojuego.categorias")
+    List<Producto> findByCategoria(@Param ("categoria") Categoria categoria);*/
 
 
 

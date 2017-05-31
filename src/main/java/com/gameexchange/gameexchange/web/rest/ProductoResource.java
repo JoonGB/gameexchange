@@ -184,7 +184,7 @@ public class ProductoResource {
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert("producto", id.toString())).build();
     }
 
-    @GetMapping("/productos/byCategoria/{nombre}")
+    /*@GetMapping("/productos/byCategoria/{nombre}")
     @Timed
     public List<Producto> getProductoByCategoria(@PathVariable String nombre) {
         log.debug("REST request to get Producto by categoria : {}", nombre);
@@ -199,7 +199,7 @@ public class ProductoResource {
         }
 
         return productos;
-    }
+    }*/
 
 
 }

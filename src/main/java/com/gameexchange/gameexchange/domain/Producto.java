@@ -34,8 +34,8 @@ public class Producto implements Serializable {
     @Column(name = "nombre")
     private String nombre;
 
-    @ManyToOne
-    private Videojuego videojuego;
+    @Column(name = "videojuego")
+    private Long videojuego;
 
     @ManyToOne
     private User usuario;
@@ -108,16 +108,16 @@ public class Producto implements Serializable {
         this.nombre = nombre;
     }
 
-    public Videojuego getVideojuego() {
+    public Long getVideojuego() {
         return videojuego;
     }
 
-    public Producto videojuego(Videojuego videojuego) {
+    public Producto videojuego(Long videojuego) {
         this.videojuego = videojuego;
         return this;
     }
 
-    public void setVideojuego(Videojuego videojuego) {
+    public void setVideojuego(Long videojuego) {
         this.videojuego = videojuego;
     }
 

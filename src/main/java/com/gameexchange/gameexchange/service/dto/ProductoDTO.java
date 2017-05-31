@@ -20,7 +20,7 @@ public class ProductoDTO {
     private ZonedDateTime creado;
     private Double precio;
     private String nombre;
-    private Videojuego videojuego;
+    private Long videojuego;
     private User usuario;
     private UserExt usuarioext;
     private List<Foto> fotos = new ArrayList<>();
@@ -67,11 +67,11 @@ public class ProductoDTO {
         this.nombre = nombre;
     }
 
-    public Videojuego getVideojuego() {
+    public Long getVideojuego() {
         return videojuego;
     }
 
-    public void setVideojuego(Videojuego videojuego) {
+    public void setVideojuego(Long videojuego) {
         this.videojuego = videojuego;
     }
 
