@@ -58,6 +58,12 @@ public class AccountResource {
         HttpHeaders textPlainHeaders = new HttpHeaders();
         textPlainHeaders.setContentType(MediaType.TEXT_PLAIN);
 
+        managedUserVM.setLogin(managedUserVM.getEmail());
+        managedUserVM.setFirstName("");
+        managedUserVM.setLastName("");
+        managedUserVM.setLangKey("EN");
+
+
         return userRepository.findOneByLogin(managedUserVM.getLogin().toLowerCase())
             .map(user -> new ResponseEntity<>("login already in use", textPlainHeaders, HttpStatus.BAD_REQUEST))
             .orElseGet(() -> userRepository.findOneByEmail(managedUserVM.getEmail())
