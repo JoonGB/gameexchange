@@ -27,20 +27,20 @@
             <column name="descripcion" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
-            
+
             <column name="creado" type="timestamp">
                 <constraints nullable="true" />
             </column>
-            
+
             <column name="precio" type="double">
                 <constraints nullable="true" />
             </column>
-            
+
             <column name="nombre" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
-            
-            <column name="videojuego_id" type="bigint">
+
+            <column name="videojuego" type="bigint">
                 <constraints nullable="true" />
             </column>
 
@@ -51,6 +51,6 @@
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
         </createTable>
         <dropDefaultValue tableName="producto" columnName="creado" columnDataType="datetime"/>
-        
+
     </changeSet>
 </databaseChangeLog>
