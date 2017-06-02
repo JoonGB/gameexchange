@@ -6,7 +6,9 @@ import com.gameexchange.gameexchange.domain.Foto;
 import com.gameexchange.gameexchange.domain.Producto;
 
 import com.gameexchange.gameexchange.repository.CategoriaRepository;
+import com.gameexchange.gameexchange.repository.FotoRepository;
 import com.gameexchange.gameexchange.repository.ProductoRepository;
+import com.gameexchange.gameexchange.repository.UserRepository;
 import com.gameexchange.gameexchange.service.ProductService;
 import com.gameexchange.gameexchange.service.dto.ProductoDTO;
 import com.gameexchange.gameexchange.web.rest.util.HeaderUtil;
@@ -22,6 +24,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.inject.Inject;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -40,6 +43,10 @@ public class ProductoResource {
     private ProductoRepository productoRepository;
     @Inject
     private CategoriaRepository categoriaRepository;
+    @Inject
+    private FotoRepository fotoRepository;
+    @Inject
+    private UserRepository userRepository;
 
     @Inject
     private ProductService productService;
@@ -64,6 +71,32 @@ public class ProductoResource {
             .body(result);
     }
 
+    @PostMapping("/crearProducto")
+    @Timed
+    public ResponseEntity<Producto> crearProducto(@RequestBody ProductoDTO productoDTO) throws URISyntaxException {
+        log.debug("REST request to save Producto : {}", productoDTO);
+        if (productoDTO.getId() != null) {
+            return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert("producto", "idexists", "A new producto cannot already have an ID")).body(null);
+        }
+
+        Producto producto = new Producto();
+        producto.setNombre(productoDTO.getNombre());
+        producto.setPrecio(productoDTO.getPrecio());
+        producto.setDescripcion(productoDTO.getDescripcion());
+        producto.setVideojuego(productoDTO.getVideojuego());
+        producto.setUsuario(userRepository.findOne(4L));
+        producto.setCreado(ZonedDateTime.now());
+        Producto result = productoRepository.save(producto);
+        if (productoDTO.getFotos() != null && productoDTO.getFotos().size() != 0) {
+            for (Foto foto : productoDTO.getFotos()) {
+                foto.setProducto(result);
+                fotoRepository.save(foto);
+            }
+        }
+        return ResponseEntity.created(new URI("/api/productosdto/" + result.getId()))
+            .headers(HeaderUtil.createEntityCreationAlert("producto", result.getId().toString()))
+            .body(result);
+    }
     /**
      * PUT  /productos : Updates an existing producto.
      *

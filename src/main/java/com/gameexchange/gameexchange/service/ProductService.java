@@ -74,10 +74,7 @@ public class ProductService {
     }
 
     public UserExt getUserExt(User user) {
-
-
         return userExtRepository.findByUser(user);
-
     }
 
     public ProductoDTO getProductoDTO(Producto producto) {
