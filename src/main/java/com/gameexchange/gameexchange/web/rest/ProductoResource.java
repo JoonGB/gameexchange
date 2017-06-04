@@ -84,7 +84,7 @@ public class ProductoResource {
         producto.setPrecio(productoDTO.getPrecio());
         producto.setDescripcion(productoDTO.getDescripcion());
         producto.setVideojuego(productoDTO.getVideojuego());
-        producto.setUsuario(userRepository.findOne(4L));
+        producto.setUsuario(userRepository.findOneByLogin(productoDTO.getUsuario().getLogin()).get());
         producto.setCreado(ZonedDateTime.now());
         Producto result = productoRepository.save(producto);
         if (productoDTO.getFotos() != null && productoDTO.getFotos().size() != 0) {
