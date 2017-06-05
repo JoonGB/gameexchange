@@ -48,11 +48,11 @@
                 <constraints nullable="true" />
             </column>
 
-            <column name="latitud" type="bigint">
+            <column name="latitud" type="double">
                 <constraints nullable="true" />
             </column>
 
-            <column name="longitud" type="bigint">
+            <column name="longitud" type="double">
                 <constraints nullable="true" />
             </column>
 
