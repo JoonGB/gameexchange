@@ -1,0 +1,27 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet author="Guillem (generated)" id="1496675933389-1">
+        <addColumn tableName="conversacion">
+            <column name="producto_id" type="bigint"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="Guillem (generated)" id="1496675933389-2">
+        <addColumn tableName="conversacion">
+            <column name="usuario1_id" type="bigint"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="Guillem (generated)" id="1496675933389-3">
+        <addColumn tableName="conversacion">
+            <column name="usuario2_id" type="bigint"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="Guillem (generated)" id="1496675933389-4">
+        <addForeignKeyConstraint baseColumnNames="usuario2_id" baseTableName="conversacion" constraintName="FKafk9b2kxcbg8v3nvq8vm6f1iy" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="user_ext"/>
+    </changeSet>
+    <changeSet author="Guillem (generated)" id="1496675933389-5">
+        <addForeignKeyConstraint baseColumnNames="usuario1_id" baseTableName="conversacion" constraintName="FKcvkps9a6vctle6elyrkm510vl" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="user_ext"/>
+    </changeSet>
+    <changeSet author="Guillem (generated)" id="1496675933389-6">
+        <addForeignKeyConstraint baseColumnNames="producto_id" baseTableName="conversacion" constraintName="FKpma7268we4i4gouju65fli49i" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="producto"/>
+    </changeSet>
+</databaseChangeLog>

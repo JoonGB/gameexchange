@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+    <!--
+        Added the constraints for entity Producto.
+    -->
+    <changeSet id="20170202194036-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="usuario2_id" baseTableName="conversacion" constraintName="FKafk9b2kxcbg8v3nvq8vm6f1iy" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="user_ext"/>
+        <addForeignKeyConstraint baseColumnNames="usuario1_id" baseTableName="conversacion" constraintName="FKcvkps9a6vctle6elyrkm510vl" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="user_ext"/>
+        <addForeignKeyConstraint baseColumnNames="producto_id" baseTableName="conversacion" constraintName="FKpma7268we4i4gouju65fli49i" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="producto"/>
+
+
+    </changeSet>
+</databaseChangeLog>

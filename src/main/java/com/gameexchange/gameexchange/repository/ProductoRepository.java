@@ -14,6 +14,7 @@ import java.util.List;
 @SuppressWarnings("unused")
 public interface ProductoRepository extends JpaRepository<Producto,Long> {
 
+
     @Query("select producto from Producto producto where producto.usuario.login = ?#{principal.username}")
     List<Producto> findByUsuarioIsCurrentUser();
 
