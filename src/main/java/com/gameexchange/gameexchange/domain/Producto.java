@@ -37,6 +37,11 @@ public class Producto implements Serializable {
     @Column(name = "videojuego")
     private Long videojuego;
 
+    @Column(name = "latitud")
+    private Long latitud;
+    @Column(name = "longitud")
+    private Long longitud;
+
     @ManyToOne
     private User usuario;
 
@@ -182,6 +187,22 @@ public class Producto implements Serializable {
 
     public void setVentas(Set<Venta> ventas) {
         this.ventas = ventas;
+    }
+
+    public Long getLatitud() {
+        return latitud;
+    }
+
+    public void setLatitud(Long latitud) {
+        this.latitud = latitud;
+    }
+
+    public Long getLongitud() {
+        return longitud;
+    }
+
+    public void setLongitud(Long longitud) {
+        this.longitud = longitud;
     }
 
     @Override

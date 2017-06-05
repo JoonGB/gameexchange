@@ -48,6 +48,14 @@
                 <constraints nullable="true" />
             </column>
 
+            <column name="latitud" type="bigint">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="longitud" type="bigint">
+                <constraints nullable="true" />
+            </column>
+
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
         </createTable>
         <dropDefaultValue tableName="producto" columnName="creado" columnDataType="datetime"/>
