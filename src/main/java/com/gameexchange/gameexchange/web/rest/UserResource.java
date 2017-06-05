@@ -3,10 +3,13 @@ package com.gameexchange.gameexchange.web.rest;
 import com.gameexchange.gameexchange.config.Constants;
 import com.codahale.metrics.annotation.Timed;
 import com.gameexchange.gameexchange.domain.User;
+import com.gameexchange.gameexchange.domain.UserExt;
+import com.gameexchange.gameexchange.repository.UserExtRepository;
 import com.gameexchange.gameexchange.repository.UserRepository;
 import com.gameexchange.gameexchange.security.AuthoritiesConstants;
 import com.gameexchange.gameexchange.service.MailService;
 import com.gameexchange.gameexchange.service.UserService;
+import com.gameexchange.gameexchange.service.util.RandomUtil;
 import com.gameexchange.gameexchange.web.rest.vm.ManagedUserVM;
 import com.gameexchange.gameexchange.web.rest.util.HeaderUtil;
 import com.gameexchange.gameexchange.web.rest.util.PaginationUtil;
@@ -24,6 +27,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.inject.Inject;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.time.ZonedDateTime;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -59,6 +63,8 @@ public class UserResource {
 
     @Inject
     private UserRepository userRepository;
+    @Inject
+    private UserExtRepository userExtRepository;
 
     @Inject
     private MailService mailService;
@@ -96,6 +102,29 @@ public class UserResource {
         } else {
             User newUser = userService.createUser(managedUserVM);
             mailService.sendCreationEmail(newUser);
+            return ResponseEntity.created(new URI("/api/users/" + newUser.getLogin()))
+                .headers(HeaderUtil.createAlert( "userManagement.created", newUser.getLogin()))
+                .body(newUser);
+        }
+    }
+
+    @PostMapping("/register")
+    @Timed
+    public ResponseEntity<User> registrarUsuario(@RequestBody User user) throws URISyntaxException {
+        log.debug("REST request to save User : {}", user);
+
+        //Lowercase the user login before comparing with database
+        if (userRepository.findOneByLogin(user.getLogin().toLowerCase()).isPresent()) {
+            return ResponseEntity.badRequest()
+                .headers(HeaderUtil.createFailureAlert("userManagement", "userexists", "Login already in use"))
+                .body(null);
+        } else if (userRepository.findOneByEmail(user.getEmail()).isPresent()) {
+            return ResponseEntity.badRequest()
+                .headers(HeaderUtil.createFailureAlert("userManagement", "emailexists", "Email already in use"))
+                .body(null);
+        } else {
+            User newUser = userService.createUser(user.getLogin(), user.getPassword(), user.getFirstName(), user.getLastName(), user.getEmail(), "es");
+            //mailService.sendCreationEmail(newUser);
             return ResponseEntity.created(new URI("/api/users/" + newUser.getLogin()))
                 .headers(HeaderUtil.createAlert( "userManagement.created", newUser.getLogin()))
                 .body(newUser);
