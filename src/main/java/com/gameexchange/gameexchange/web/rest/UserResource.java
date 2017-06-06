@@ -210,4 +210,13 @@ public class UserResource {
         userService.deleteUser(login);
         return ResponseEntity.ok().headers(HeaderUtil.createAlert( "userManagement.deleted", login)).build();
     }
+
+    @GetMapping("/usuariosget/userext/{login}")
+    @Timed
+    public ResponseEntity<UserExt> getUsuarioExtByLogin(@PathVariable String login) {
+        log.debug("REST request to get User : {}", login);
+        User user = userRepository.findOneByLogin(login).get();
+        return new ResponseEntity<>(userExtRepository.findByUser(user), HttpStatus.OK);
+    }
+
 }

@@ -86,6 +86,8 @@ public class ProductoResource {
         producto.setVideojuego(productoDTO.getVideojuego());
         producto.setUsuario(userRepository.findOneByLogin(productoDTO.getUsuario().getLogin()).get());
         producto.setCreado(ZonedDateTime.now());
+        producto.setLatitud(productoDTO.getLatitud());
+        producto.setLongitud(productoDTO.getLongitud());
         Producto result = productoRepository.save(producto);
         if (productoDTO.getFotos() != null && productoDTO.getFotos().size() != 0) {
             for (Foto foto : productoDTO.getFotos()) {
