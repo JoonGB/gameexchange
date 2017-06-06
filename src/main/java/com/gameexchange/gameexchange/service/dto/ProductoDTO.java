@@ -20,6 +20,8 @@ public class ProductoDTO {
     private ZonedDateTime creado;
     private Double precio;
     private String nombre;
+    private double latitud;
+    private double longitud;
     private Long videojuego;
     private User usuario;
     private UserExt usuarioext;
@@ -65,6 +67,22 @@ public class ProductoDTO {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    public double getLatitud() {
+        return latitud;
+    }
+
+    public void setLatitud(double latitud) {
+        this.latitud = latitud;
+    }
+
+    public double getLongitud() {
+        return longitud;
+    }
+
+    public void setLongitud(double longitud) {
+        this.longitud = longitud;
     }
 
     public Long getVideojuego() {

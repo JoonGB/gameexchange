@@ -85,6 +85,8 @@ public class ProductService {
         productoDTO.setDescripcion(producto.getDescripcion());
         productoDTO.setCreado(producto.getCreado());
         productoDTO.setPrecio(producto.getPrecio());
+        productoDTO.setLatitud(producto.getLatitud());
+        productoDTO.setLongitud(producto.getLongitud());
         productoDTO.setUsuario(producto.getUsuario());
         productoDTO.setFotos(new ArrayList<>(producto.getFotos()));
         productoDTO.setVentas(new ArrayList<>(producto.getVentas()));
