@@ -160,6 +160,18 @@ public class ConversacionResource {
             .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
+    @PostMapping("/chats/mensajes/{idchat}")
+    @Timed
+    public ResponseEntity<List<Mensaje>> getAllChatMensajesById(@PathVariable Long idchat) {
+        log.debug("REST request to all mensajes from: ", idchat);
+        List<Mensaje> mensajeList = mensajeRepository.findByConversacion(conversacionRepository.findOne(idchat));
+        return Optional.ofNullable(mensajeList)
+            .map(result -> new ResponseEntity<>(
+                result,
+                HttpStatus.OK))
+            .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+    }
+
     @PostMapping("/chats/nuevo")
     @Timed
     public ResponseEntity<Conversacion> crearNuevoChat(@RequestBody Conversacion conversacion) throws URISyntaxException {
